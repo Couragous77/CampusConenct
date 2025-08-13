@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+env: {
+    OPENWEATHERMAP_KEY: process.env.OPENWEATHERMAP_KEY,
+    API_NINJAS_KEY: process.env.API_NINJAS_KEY,
+  },
 };
 
 export default nextConfig;
