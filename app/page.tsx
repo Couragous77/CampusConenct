@@ -110,7 +110,7 @@ export default function Home() {
 
       {/* Weather Section */}
       <section className="bg-white shadow rounded p-4 m-4 text-center">
-        <h2 className="text-xl font-bold text-red-600 mb-2">Today's Weather</h2>
+        <h2 className="text-xl font-bold text-red-600 mb-2">Todays Weather</h2>
         <p className="text-gray-700">{weather}</p>
       </section>
 
