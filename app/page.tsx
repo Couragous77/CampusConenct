@@ -48,7 +48,7 @@ export default function Home() {
           else if (desc.includes("cloud")) emoji = "☁️";
           else if (desc.includes("snow")) emoji = "❄️";
 
-          const formatted = `${data.location}: ${data.temp}°C, ${desc.charAt(0).toUpperCase() + desc.slice(1)} ${emoji}`;
+          const formatted = `${data.location}: ${data.temp}°F, ${desc.charAt(0).toUpperCase() + desc.slice(1)} ${emoji}`;
           setWeather(formatted);
         } else {
           setWeather("Weather data unavailable.");
