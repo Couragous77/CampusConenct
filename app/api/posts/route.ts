@@ -1,7 +1,6 @@
 // app/api/posts/route.ts
 import { NextResponse } from "next/server";
-import { PrismaClient } from "../../generated/prisma";
- // need this for database operations
+import { PrismaClient } from "@prisma/client"; // need this for database operations
 
 // a new instance of PrismaClient to interact with the database
 const prisma = new PrismaClient();
