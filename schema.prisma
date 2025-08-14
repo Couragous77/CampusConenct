@@ -1,7 +1,6 @@
 // the prisma client needed to get the library
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
 }
 
 // the database source
