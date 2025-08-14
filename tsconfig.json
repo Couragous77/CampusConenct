@@ -18,13 +18,10 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": ["./*"]
-    },
     "baseUrl": ".",
     "paths": {
       "@/*": ["./app/*"],
-      "@prisma-client/*": ["./app/generated/prisma/*"]
+      "@prisma-client/*": ["./app/generated/prisma"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
