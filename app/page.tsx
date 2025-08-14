@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+// function for the home page, which is the main loading page for the website
 export default function Home() {
   const [chatOpen, setChatOpen] = useState(false);
   const [joke, setJoke] = useState("");
   const [weather, setWeather] = useState("");
 
-  // Load Elfsight script
+  // Load Elfsight script. This is for the chatbox widget.
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://static.elfsight.com/platform/platform.js";
@@ -20,7 +21,7 @@ export default function Home() {
     };
   }, []);
 
-  // Fetch Jokes and Weather
+  // Get the Jokes
   useEffect(() => {
     fetch("/api/jokes")
       .then((res) => res.json())
@@ -35,6 +36,7 @@ export default function Home() {
       })
       .catch(() => setJoke("Failed to load joke."));
 
+    // Get the Weather, used chatpt to generate the emojis for better UX
     fetch("/api/weather")
       .then((res) => res.json())
       .then((data) => {
@@ -55,6 +57,7 @@ export default function Home() {
       .catch(() => setWeather("Failed to load weather."));
   }, []);
 
+  // Main return for the home page
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Top Bar */}
@@ -73,6 +76,7 @@ export default function Home() {
       <nav className="bg-red-600 text-white p-3">
         <ul className="flex justify-center space-x-6">
           <li><Link href="/" className="hover:text-gray-200">Home</Link></li>
+          <li><Link href="/about" className="hover:text-gray-200">About</Link></li>
           <li><Link href="/forum" className="hover:text-gray-200">Forum</Link></li>
         </ul>
       </nav>

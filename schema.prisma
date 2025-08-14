@@ -1,0 +1,28 @@
+// the prisma client needed to get the library
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+// the database source
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// the models for each table 
+model replies {
+  id         Int      @id @default(autoincrement())
+  content    String
+  created_at DateTime @default(now())
+  postId     Int
+  post       posts    @relation(fields: [postId], references: [id])
+}
+
+model posts {
+  id         Int        @id @default(autoincrement())
+  title      String     @db.VarChar(255)
+  content    String     @db.Text
+  created_at DateTime?  @default(now()) @db.Timestamp(0)
+  replies   replies[]
+}

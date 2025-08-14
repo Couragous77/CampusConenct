@@ -1,22 +1,32 @@
-"use client";
+"use client"; // This is a client component due to hooks and state 
 
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+
+// Dictionary types for Post and Reply
+type Reply = {
+  id: number;
+  content: string;
+  created_at: string;
+};
 
 type Post = {
   id: number;
   title: string;
   content: string;
   created_at: string;
+  replies: Reply[];
 };
 
+
 export default function Forum() {
+  // The states to hold posts and form data
   const [posts, setPosts] = useState<Post[]>([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  // Fetch posts on load
+  // get all posts from the backend
   useEffect(() => {
     fetch("/api/posts")
       .then((res) => res.json())
@@ -24,10 +34,10 @@ export default function Forum() {
       .catch((err) => console.error("Failed to fetch posts:", err));
   }, []);
 
-  // Handle new post submission
+  // Handle the submission of the post form
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!title.trim() || !content.trim()) return;
+    e.preventDefault(); // I don't want the page to reload
+    if (!title.trim() || !content.trim()) return; //Validation check
 
     const res = await fetch("/api/posts", {
       method: "POST",
@@ -38,7 +48,7 @@ export default function Forum() {
     if (res.ok) {
       const newPost = await res.json();
       setPosts([newPost, ...posts]); // add new post to top
-      setTitle("");
+      setTitle(""); // reset the title 
       setContent("");
     } else {
       console.error("Post creation failed");
@@ -63,6 +73,7 @@ export default function Forum() {
       <nav className="bg-red-600 text-white p-3">
         <ul className="flex justify-center space-x-6">
           <li><Link href="/" className="hover:text-gray-200">Home</Link></li>
+          <li><Link href="/about" className="hover:text-gray-200">About</Link></li>
           <li><Link href="/forum" className="hover:text-gray-200">Forum</Link></li>
         </ul>
       </nav>
