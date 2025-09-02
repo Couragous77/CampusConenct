@@ -10,6 +10,7 @@ export async function GET() {
     const apiKey = process.env.OPENWEATHERMAP_KEY; //key is privately stored in .env file. Great for security
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`; // Using F insteadd of C
 
+    
     const response = await fetch(url, { cache: 'no-store' }); // We want fresh data on every request
     //(debugging) If errors occur, log them
     if (!response.ok) {
